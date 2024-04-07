@@ -1,0 +1,956 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Gestión de Retención de Empleados},
+  pdfauthor={Jorge Luis Aquino Olmos},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Gestión de Retención de Empleados}
+\author{Jorge Luis Aquino Olmos}
+\date{2024-03-10}
+
+\begin{document}
+\maketitle
+
+\hypertarget{modelos-de-regresiuxf3n}{%
+\section{Modelos de Regresión}\label{modelos-de-regresiuxf3n}}
+
+Los modelos de regresión son una clase de técnicas estadísticas
+utilizadas para predecir el valor de una variable dependiente basándose
+en una o varias variables indpendientes. Las variables independientes,
+también llamadas predictoras o variables explicativas, son aquellas que
+se usan para realizar la predicción.
+
+Existen varios tipos de modelos de regresión, cada uno diseñado para
+diferentes tipos de datos y situaciones, algunos de los tipos más
+comunes de modelos de regresión:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Regresión Lineal simple}: Es el tipo más básico de modelo de
+  regresión. Se utiliza cuando hay una relación lineal entre una
+  variable independiente y una variable dependiente. La ecuación de
+  regresión lineal simple tiene la forma:
+  \[ y = \beta_0 + \beta_1x + \epsilon\] donde y es la variable
+  dependiente, x es la variable independiente \(\beta_0\) es el
+  intercepto, \(\beta_1\) es la pendiente y \(\epsilon\) es el término
+  de error.
+\item
+  \textbf{Regresión lineal múltiple}: Este modelo se utiliza cuando hay
+  más de una variable independiente que influye en la variable
+  dependiente. La ecuación de regresión lineal múltiple tiene la forma
+  \[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_nx_n + \epsilon\ \]donde
+  \(\beta_0, \beta_1, ... ,\beta_n\) son los coeficientes que se estiman
+  a partir de los datos \$ x\_1, x\_2, \ldots, x\_n \$ y \(\epsilon\) es
+  el término de error.
+\item
+  \textbf{Regresión polinomial}: Este tipo de regresión se utiliza
+  cuando la relación entre la variable independiente y la variable
+  dependiente no es lineal. Se ajusta una curva polinomial a los datos,
+  lo que permite capturar relaciones más complejas. Por ejemplo, una
+  regresión polinomial de segundo grado tiene la forma
+  \[ y=\beta_0+\beta_1x+\beta_2x^2+\epsilon \]
+\item
+  \textbf{Regresión Logística}: La regresión logística, también conocida
+  como ``modelo logit'', es una técnica estadística utilizada para
+  predecir variables categóricas a partir de variables predictoras. A
+  diferencia de la regresión lineal, que se emplea para predecir valores
+  continuos, la regresión logística se aplica cuando la variable
+  dependiente es finita o categórica. Esta variable puede ser binaria,
+  como sí/no o 1/0, lo que se conoce como regresión binaria, o puede
+  tener múltiples categorías, como A, B, C o D, lo que se conoce como
+  regresión multinomial.
+\end{enumerate}
+
+\hypertarget{estimaciuxf3n-de-coeficientes-mediante-muxednimos-cuadrados-ordinarios}{%
+\subsubsection{Estimación de Coeficientes mediante Mínimos Cuadrados
+Ordinarios}\label{estimaciuxf3n-de-coeficientes-mediante-muxednimos-cuadrados-ordinarios}}
+
+Los Mínimos Cuadrados Ordinarios (OLS, por sus siglas en inglés) es un
+método comúnmente utilizado para estimar los parámetros desconocidos en
+modelos de regresión. El objetivo es encontrar los coeficientes que
+minimizan la suma de los cuadrados de las diferencias entre los valores
+observados y los valores predichos por el modelo.
+
+Para el caso de la regresión lineal simple, la estimación de los
+coeficientes se realiza de la siguiente manera:
+
+Dado un conjunto de datos \({(x_i, y_i)}\) para \(i = 1, 2, ..., n\),
+donde \(x_i\) es la variable independiente y \(y_i\) es la variable
+dependiente, la estimación de los coeficientes \(\beta_0\) y \(\beta_1\)
+se obtiene minimizando la función de pérdida, que en este caso es la
+suma de los cuadrados de los residuos (errores), denotada por \(SSR\):
+
+\begin{equation}
+SSR = \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 x_i))^2
+\end{equation}
+
+Para encontrar los valores de \(\beta_0\) y \(\beta_1\) que minimizan
+\(SSR\), se derivan parcialmente \(SSR\) con respecto a \(\beta_0\) y
+\(\beta_1\), se igualan a cero y se resuelven las ecuaciones
+resultantes. Esto conduce a las llamadas ecuaciones normales:
+
+\begin{align}
+\frac{\partial SSR}{\partial \beta_0} &= -2 \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 x_i)) = 0 \\
+\frac{\partial SSR}{\partial \beta_1} &= -2 \sum_{i=1}^{n} x_i(y_i - (\beta_0 + \beta_1 x_i)) = 0
+\end{align}
+
+Resolviendo estas ecuaciones, se obtienen las estimaciones de los
+coeficientes \(\beta_0\) y \(\beta_1\):
+
+\begin{align}
+\hat{\beta_1} &= \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2} \\
+\hat{\beta_0} &= \bar{y} - \hat{\beta_1}\bar{x}
+\end{align}
+
+donde \(\bar{x}\) y \(\bar{y}\) son las medias de las variables
+independiente y dependiente, respectivamente.
+
+Para la regresión lineal múltiple y otros tipos de regresión, las
+ecuaciones normales se generalizan en forma matricial:
+
+\begin{equation}
+\mathbf{\hat{\beta}} = (\mathbf{X}^\intercal \mathbf{X})^{-1} \mathbf{X}^\intercal \mathbf{y}
+\end{equation}
+
+donde \(\mathbf{X}\) es una matriz de diseño que contiene las variables
+independientes, \(\mathbf{y}\) es un vector de la variable dependiente,
+y \(\mathbf{\hat{\beta}}\) son los coeficientes estimados.
+
+\hypertarget{modelizaciuxf3n-de-retenciuxf3n-de-empleados-y-ganancias-de-tiendas-en-store24}{%
+\subsubsection{Modelización de Retención de Empleados y Ganancias de
+Tiendas en
+Store24}\label{modelizaciuxf3n-de-retenciuxf3n-de-empleados-y-ganancias-de-tiendas-en-store24}}
+
+El objetivo de este estudio es comprender cómo la retención de empleados
+en las tiendas de Store24 influye en sus ganancias. Utilizando datos del
+año fiscal 2000, exploraremos diversas variables relacionadas con la
+gestión de recursos humanos, características de ubicación de la tienda y
+datos demográficos para determinar su impacto en la utilidad de las
+tiendas.
+
+Nuestra variable objetivo será la ``Utilidad del año fiscal 2000 antes
+de asignación de gastos indirectos corporativos, alquiler y
+depreciación'', que refleja las ganancias de cada tienda. Consideraremos
+una serie de variables predictoras, como la antigüedad promedio de los
+gerentes y el personal, la competencia en la ubicación de la tienda, la
+densidad de población circundante y características de la tienda, como
+su horario de apertura y su ubicación residencial o industrial.
+
+A través de técnicas de regresión, exploraremos la relación entre estas
+variables y las ganancias de las tiendas, con el objetivo de identificar
+áreas de oportunidad para mejorar la retención de empleados y, en última
+instancia, aumentar las ganancias de Store24.
+
+\hypertarget{variables-que-haran-parte-de-estudio.}{%
+\subsubsection{Variables que haran parte de
+estudio.}\label{variables-que-haran-parte-de-estudio.}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.0759}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.9241}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descripción
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Sales & Ventas del año fiscal 2000 \\
+Profit & Utilidad del año fiscal 2000 antes de asignación de gastos
+indirectos corporativos, alquiler y depreciación \\
+MTenure & Antigüedad promedio en el puesto del gerente durante el año
+fiscal 2000 donde la tenencia se define como el número de meses de
+experiencia en Store24 \\
+CTenure & Antigüedad promedio en el puesto del personal durante el año
+fiscal 2000 donde la tenencia se define como el número de meses de
+experiencia en Store24 \\
+Comp & Número de competidores por 10,000 personas dentro de un radio de
+1/2 milla \\
+Pop & Población dentro de un radio de 1/2 milla \\
+Visibility & Calificación de 5 puntos en visibilidad del frente de la
+tienda, siendo 5 la más alta \\
+PedCount & Calificación de 5 puntos sobre el volumen de tráfico de
+peatones, siendo 5 el más alto \\
+Hours24 & Indicador de si la tienda abre o no 24 horas \\
+Res & Indicador de ubicado en zona residencial vs.~industrial \\
+CrewSkill & Habilidad del equipo \\
+MgrSkill & Habilidad de gestión \\
+ServQual & Medición de calidad de servicio \\
+\end{longtable}
+
+Como podemos observar el conjunto de datos que servirán para realizar
+nuestro modelo contienen información financieras, otras que describen la
+gestión del recurso humano y variables de ubicación de las tiendas.
+
+\hypertarget{lectura-de-los-datos}{%
+\subsubsection{Lectura de los datos}\label{lectura-de-los-datos}}
+
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0513}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0684}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0598}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0855}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0855}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0513}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0940}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0342}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0684}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0855}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0769}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 26\tabcolsep) * \real{0.0855}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+store
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Sales
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Profit
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+MTenure
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+CTenure
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pop
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Comp
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Visibility
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+PedCount
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Res
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Hours24
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+CrewSkill
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+MgrSkill
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+ServQual
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & 1060294 & 265014 & 0.00000 & 24.804930 & 7535 & 2.797888 & 3 & 3 & 1
+& 1 & 3.56 & 3.150000 & 86.84327 \\
+2 & 1619874 & 424007 & 86.22219 & 6.636550 & 8630 & 4.235555 & 4 & 3 & 1
+& 1 & 3.20 & 3.556667 & 94.73510 \\
+3 & 1099921 & 222735 & 23.88854 & 5.026694 & 9695 & 4.494666 & 3 & 3 & 1
+& 1 & 3.80 & 4.116667 & 78.94776 \\
+4 & 1053860 & 210122 & 0.00000 & 5.371663 & 2797 & 4.253946 & 4 & 2 & 1
+& 1 & 2.06 & 4.100000 & 100.00000 \\
+5 & 1227841 & 300480 & 3.87737 & 6.866530 & 20335 & 1.651364 & 2 & 5 & 0
+& 1 & 3.65 & 3.588889 & 68.42164 \\
+6 & 1703140 & 469050 & 149.93590 & 11.351130 & 16926 & 3.184613 & 3 & 4
+& 1 & 0 & 3.58 & 4.605556 & 94.73510 \\
+7 & 1809256 & 476355 & 62.53080 & 7.326488 & 17754 & 3.377900 & 2 & 5 &
+1 & 1 & 3.94 & 4.100000 & 81.57837 \\
+8 & 1378482 & 361115 & 0.00000 & 56.772080 & 20824 & 2.895114 & 4 & 3 &
+1 & 1 & 3.98 & 3.800000 & 78.94776 \\
+9 & 2113089 & 474725 & 108.99350 & 6.061602 & 26519 & 2.637630 & 2 & 4 &
+1 & 1 & 3.22 & 3.583333 & 100.00000 \\
+10 & 1080979 & 278625 & 31.47899 & 23.195070 & 16381 & 2.270771 & 4 & 3
+& 1 & 0 & 3.54 & 3.561111 & 100.00000 \\
+\end{longtable}
+
+En nuestro conjunto de datos, contamos con varias variables que
+representan la valoración de cualidades específicas en un contexto
+particular. Estas variables, denominadas Visibility, PedCount, Res y
+Hours24, están diseñadas para capturar la evaluación de ciertas
+características relevantes para el desempeño y la operación de las
+tiendas. Cada una de estas variables de valoración de cualidades tiene
+un conjunto discreto de valores que representan diferentes niveles de la
+cualidad evaluada. Al ser variables categóricas ordinales, estas
+valoraciones no solo nos brindan una comprensión de la situación actual
+de las tiendas en términos de las cualidades evaluadas, sino que también
+nos permiten identificar tendencias, patrones y áreas de mejora en
+nuestra operación y gestión.
+
+A continuación, se presenta un resumen estadístico de las variables
+numéricas en nuestro conjunto de datos. Este resumen proporciona una
+visión general de la distribución y variabilidad de cada variable, lo
+que nos ayuda a comprender mejor la naturaleza de nuestros datos y a
+identificar posibles patrones o tendencias.
+
+\textbf{Variable type: numeric}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1186}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0847}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1186}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0932}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0847}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0847}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0847}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0932}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0932}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0932}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0508}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+sd
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p25
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p50
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p75
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p100
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+hist
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Sales & 0 & 1 & 1205413.12 & 304531.31 & 699306.00 & 984579.00 &
+1127332.00 & 1362388.00 & 2113089.00 & ▅▇▅▃▁ \\
+Profit & 0 & 1 & 276313.61 & 89404.08 & 122180.00 & 211003.50 &
+265014.00 & 331313.50 & 518998.00 & ▃▇▃▃▁ \\
+MTenure & 0 & 1 & 45.30 & 57.67 & 0.00 & 6.67 & 24.12 & 50.92 & 277.99 &
+▇▁▁▁▁ \\
+CTenure & 0 & 1 & 13.93 & 17.70 & 0.89 & 4.39 & 7.21 & 17.22 & 114.15 &
+▇▁▁▁▁ \\
+Pop & 0 & 1 & 9825.59 & 5911.67 & 1046.00 & 5616.50 & 8896.00 & 14104.00
+& 26519.00 & ▅▇▃▂▁ \\
+Comp & 0 & 1 & 3.79 & 1.31 & 1.65 & 3.15 & 3.63 & 4.23 & 11.13 &
+▇▇▁▁▁ \\
+CrewSkill & 0 & 1 & 3.46 & 0.41 & 2.06 & 3.22 & 3.50 & 3.66 & 4.64 &
+▁▂▇▅▁ \\
+MgrSkill & 0 & 1 & 3.64 & 0.41 & 2.96 & 3.34 & 3.59 & 3.92 & 4.62 &
+▅▇▆▃▁ \\
+ServQual & 0 & 1 & 87.15 & 12.61 & 57.90 & 78.95 & 89.47 & 99.90 &
+100.00 & ▂▁▃▂▇ \\
+\end{longtable}
+
+Nuestro resumen estadístico incluye las siguientes estadísticas para
+cada una de las nueve variables numéricas en nuestro conjunto de datos:
+
+\textbf{Media (mean)}: La media es el promedio de los valores de la
+variable. Indica el valor central alrededor del cual tienden a agruparse
+los datos.
+
+\textbf{Desviación estándar (sd)}: La desviación estándar mide la
+dispersión de los datos alrededor de la media. Una desviación estándar
+más alta indica una mayor dispersión de los datos.
+
+\textbf{Valores mínimos y máximos (p0 y p100)}: Estos valores
+representan los límites inferiores y superiores del rango de los datos,
+respectivamente.
+
+\textbf{Cuartiles (p25, p50 y p75)}: Los cuartiles dividen los datos en
+cuatro partes iguales, cada una representando el 25\% de los datos. El
+cuartil 50 (p50) es la mediana, que indica el valor que separa los datos
+en dos partes iguales.
+
+\textbf{Histograma}: El histograma proporciona una representación visual
+de la distribución de los datos. Permite identificar patrones,
+tendencias y características destacadas de la distribución de la
+variable.
+
+Al analizar estos estadísticos para nuestras variables numéricas,
+podemos obtener una comprensión completa de su distribución y
+variabilidad. Buscamos patrones o tendencias significativas, así como
+valores atípicos que puedan influir en nuestros análisis posteriores.
+
+\includegraphics{Entregable_Jorge_aquino_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\textbf{Visibilidad}:
+
+\begin{itemize}
+\tightlist
+\item
+  La mayoría de las tiendas tienen una visibilidad alta (4 o 5).
+\item
+  Hay algunas tiendas con una visibilidad baja (1 o 2).
+\end{itemize}
+
+\textbf{Tráfico peatonal}:
+
+\begin{itemize}
+\tightlist
+\item
+  La mayoría de las tiendas tienen un tráfico peatonal medio (3).
+\item
+  Hay algunas tiendas con un tráfico peatonal alto (4 o 5) y bajo (1 o
+  2).
+\end{itemize}
+
+\textbf{Horario de apertura}:
+
+\begin{itemize}
+\tightlist
+\item
+  La mayoría de las tiendas no abren las 24 horas (0).
+\item
+  Hay algunas tiendas que sí abren las 24 horas (1).
+\end{itemize}
+
+\textbf{Ubicación}:
+
+\begin{itemize}
+\tightlist
+\item
+  La mayoría de las tiendas están ubicadas en zonas residenciales (1).
+\item
+  Hay algunas tiendas que están ubicadas en zonas industriales (0).
+\end{itemize}
+
+\hypertarget{visualizaciuxf3n-de-la-relaciuxf3n-existe-entre-las-variables}{%
+\subsubsection{Visualización de la relación existe entre las
+variables}\label{visualizaciuxf3n-de-la-relaciuxf3n-existe-entre-las-variables}}
+
+Procederé a realizar algunas visualizaciones con el fin de obtener una
+comprensión intuitiva de la relación que pueda existir entre el
+beneficio (Profit) y algunas variables presentes en el conjunto de
+datos.
+
+\includegraphics{Entregable_Jorge_aquino_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+Estas visualizaciones muestran cómo algunas variables seleccionadas se
+relacionan con Profit. Observamos que:
+
+\begin{itemize}
+\item
+  \textbf{Sales vs Profit}: Hay una tendencia clara que un aumento en
+  las ventas está asociado con un aumento en las ganancias.
+\item
+  \textbf{Comp (Competencia) vs Profit}: A medida que el nivel de
+  competencia aumenta, hay una tendencia a disminuir las ganancias,
+  aunque la relación no parece ser tan fuerte.
+\item
+  \textbf{PedCount (Conteo de Peatones) vs Profit}: Existe cierta
+  tendencia positiva, indicando que un mayor tráfico peatonal podría
+  estar relacionado con mayores ganancias.
+\item
+  \textbf{MgrSkill (Habilidad del Gerente) vs Profit}: Se observa una
+  relación positiva moderada, sugiriendo que las habilidades de gestión
+  más altas pueden estar asociadas con mejores ganancias.
+\item
+  \textbf{ServQual (Calidad del Servicio) vs Profit}: También se observa
+  una relación positiva, indicando que una mejor calidad del servicio
+  puede contribuir a mayores ganancias.
+\end{itemize}
+
+\hypertarget{boxplot-de-profit-y-sales-para-las-variables-hours24-y-visibility}{%
+\subsubsection{Boxplot de Profit y Sales para las variables Hours24 y
+Visibility}\label{boxplot-de-profit-y-sales-para-las-variables-hours24-y-visibility}}
+
+\includegraphics{Entregable_Jorge_aquino_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+Los gráficos de caja y bigotes revelan patrones interesantes en relación
+con el desempeño de las tiendas. Es notable que las tiendas que operan
+las 24 horas del día exhiben tanto un beneficio más alto como mayores
+ventas en comparación con las tiendas que tienen un horario de apertura
+estándar. Este hallazgo sugiere una correlación entre la disponibilidad
+continua y el éxito financiero de las tiendas.
+
+Además, al observar la visibilidad de las tiendas, destacamos que
+aquellas que recibieron una calificación perfecta de 5 muestran un
+desempeño sobresaliente en términos de ganancias y ventas. Estas tiendas
+con una visibilidad excepcional experimentan un incremento significativo
+en sus ingresos en comparación con las tiendas que recibieron
+calificaciones más bajas. Esto sugiere una relación positiva entre la
+visibilidad del frente de la tienda y su rendimiento financiero, lo que
+subraya la importancia de una ubicación estratégica y una presentación
+visual atractiva para impulsar el éxito comercial.
+
+\hypertarget{beneficio-y-ventas-por-tipo-de-zona}{%
+\subsubsection{Beneficio y Ventas por tipo de
+zona}\label{beneficio-y-ventas-por-tipo-de-zona}}
+
+\includegraphics{Entregable_Jorge_aquino_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+Al analizar los gráficos previos, se evidencia que la variabilidad de
+las ventas y las ganancias en las tiendas situadas en zonas
+residenciales es considerablemente menor en comparación con las tiendas
+ubicadas en áreas industriales. Por otro lado, las tiendas en zonas
+industriales exhiben una variabilidad más alta, lo que indica una mayor
+sensibilidad a factores externos o una mayor diversidad en los patrones
+de consumo en estas áreas
+
+\hypertarget{mapa-de-correlaciuxf3n}{%
+\subsubsection{Mapa de correlación}\label{mapa-de-correlaciuxf3n}}
+
+Un mapa de correlación es una herramienta visual poderosa que nos
+permite explorar las relaciones entre variables en un conjunto de datos.
+Esta representación gráfica nos proporciona una visión general de cómo
+las diferentes variables están relacionadas entre sí, mostrando la
+fuerza y la dirección de las asociaciones. Los coeficientes de
+correlación se representan mediante colores o mediante un código de
+colores, lo que facilita la identificación de patrones y tendencias en
+los datos. Este análisis es fundamental en la exploración de datos y en
+la identificación de posibles relaciones significativas que puedan
+influir en nuestro análisis o en la toma de decisiones.
+
+\includegraphics{Entregable_Jorge_aquino_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Hay una fuerte correlación positiva entre el beneficio y las ventas
+  (Profit \textasciitilde{} Sales).
+\item
+  Hay una correlación positiva débil entre el beneficios y la antigüedad
+  en el puesto del gerente (Profit \textasciitilde{} MTenure).
+\item
+  Hay una correlación positiva débil entre el beneficio y la calidad del
+  servicio (Profit \textasciitilde{} SerQual).
+\item
+  Hay una correlación negativa débil entre el beneficio y la competencia
+  (Profit \textasciitilde{} Comp).
+\item
+  Hay una correlación positiva débil entre la antigüedad en el puesto
+  del personal y la habilidad del equipo (CTenure \textasciitilde{}
+  CrewSkill).
+\item
+  Hay una correlación positiva débil entre la antigüedad en el puesto
+  del gerente y la habilidad en la gestión (MTenure \textasciitilde{}
+  MgrSkill).
+\end{itemize}
+
+\hypertarget{valores-atuxedpicos}{%
+\subsubsection{Valores atípicos}\label{valores-atuxedpicos}}
+
+Los valores atípicos, también conocidos como valores extremos o
+anomalías, son observaciones que se desvían significativamente del
+patrón general del conjunto de datos. En el contexto de la regresión
+lineal, los valores atípicos pueden tener un impacto considerable en la
+precisión y la interpretación del modelo. Por lo tanto, es fundamental
+estudiar y comprender la presencia de valores atípicos en el análisis de
+regresión, por ello se presentará un cuadro donde se indican cuántos
+\textbf{\emph{Outliers}} hay presente en cada variable numérica:
+
+\begin{longtable}[]{@{}lr@{}}
+\caption{Conteo de valores atípicos por variable}\tabularnewline
+\toprule\noalign{}
+Variable & Valores\_Atípicos \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Variable & Valores\_Atípicos \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Sales & 1 \\
+Profit & 1 \\
+MTenure & 9 \\
+CTenure & 4 \\
+Pop & 0 \\
+Comp & 4 \\
+CrewSkill & 4 \\
+MgrSkill & 0 \\
+ServQual & 0 \\
+\end{longtable}
+
+\hypertarget{estandarizacion-de-los-datos}{%
+\subsubsection{Estandarizacion de los
+datos}\label{estandarizacion-de-los-datos}}
+
+Considerando la presencia de valores atípicos importantes en nuestros
+datos financieros y su potencial relevancia para nuestro análisis, haré
+uso de la estandarización como método de preprocesamiento de datos. La
+estandarización es menos sensible a los valores atípicos en comparación
+con la normalización, ya que utiliza la media y la desviación estándar
+de los datos para centrar y escalar las características. Esto significa
+que los valores atípicos tienen menos influencia en la escala de las
+características estandarizadas, lo que puede ayudar a mitigar su impacto
+en nuestro modelo de regresión lineal múltiple. Además, la
+estandarización facilita una interpretación más clara de los
+coeficientes del modelo, ya que representan el cambio en la variable de
+respuesta en términos de desviaciones estándar de las características
+correspondientes.
+
+\hypertarget{creaciuxf3n-del-modelo}{%
+\subsubsection{Creación del modelo}\label{creaciuxf3n-del-modelo}}
+
+Para construir el modelo de regresión lineal, utilizaré la función lm()
+del paquete stats de R. Esta función nos permitirá crear el modelo y
+obtener una visión detallada de cómo se comporta el mismo. A través de
+lm(), podremos ajustar el modelo a nuestros datos y examinar los
+coeficientes de regresión, los residuos, así como otras métricas de
+evaluación que nos ayudarán a comprender la relación entre las variables
+predictoras y la variable de respuesta.
+
+\begin{verbatim}
+## 
+## 
+## |              Métrica               |   Valor   |
+## |:----------------------------------:|:---------:|
+## | RMSE (Error Cuadrático Medio Raíz) | 0.3854082 |
+## | R² (Coeficiente de Determinación)  | 0.8840036 |
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 
+## Table: Coeficientes del Modelo de Regresión
+## 
+## |            |  Variable   | Coeficiente |
+## |:-----------|:-----------:|:-----------:|
+## |(Intercept) | (Intercept) | -0.0115501  |
+## |Sales       |    Sales    |  0.7729019  |
+## |MTenure     |   MTenure   |  0.1032391  |
+## |CTenure     |   CTenure   |  0.0300994  |
+## |Pop         |     Pop     |  0.0990065  |
+## |Comp        |    Comp     | -0.1250342  |
+## |CrewSkill   |  CrewSkill  | -0.0802951  |
+## |MgrSkill    |  MgrSkill   |  0.0723050  |
+## |ServQual    |  ServQual   |  0.0111320  |
+\end{verbatim}
+
+\includegraphics{Entregable_Jorge_aquino_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\hypertarget{resumen-del-modelo}{%
+\subsubsection{Resumen del Modelo}\label{resumen-del-modelo}}
+
+\begin{verbatim}
+##                Variable Coeficiente      P.value   Significancia
+## (Intercept) (Intercept) -0.01155006 8.089129e-01                
+## Sales             Sales  0.77290191 8.185012e-16 ***************
+## MTenure         MTenure  0.10323910 1.677866e-01                
+## CTenure         CTenure  0.03009935 5.331914e-01                
+## Pop                 Pop  0.09900652 8.362654e-02 ***************
+## Comp               Comp -0.12503416 2.369793e-02 ***************
+## CrewSkill     CrewSkill -0.08029510 2.180742e-01                
+## MgrSkill       MgrSkill  0.07230499 1.912647e-01                
+## ServQual       ServQual  0.01113196 8.382281e-01
+\end{verbatim}
+
+\hypertarget{interpretaciuxf3n-de-los-resultados}{%
+\subsubsection{Interpretación de los
+resultados}\label{interpretaciuxf3n-de-los-resultados}}
+
+\begin{itemize}
+\item
+  \textbf{RMSE (Error Cuadrático Medio Raíz):} Un valor de RMSE de
+  0.3854082 indica que, en promedio, las predicciones del modelo están
+  desviadas por aproximadamente 0.3854082 unidades de la variable
+  objetivo. Dado que la variable objetivo oscila entre -1.724011 y
+  2.71446, un RMSE de esta magnitud podría considerarse aceptable,
+  especialmente si se tiene en cuenta la escala y la variabilidad de la
+  variable objetivo.
+\item
+  \textbf{R² (Coeficiente de Determinación):} Un valor de R² de
+  0.8840036 sugiere que el modelo explica aproximadamente el 88.4\% de
+  la variabilidad en la variable objetivo. Esto indica que el modelo
+  tiene una capacidad predictiva considerable y puede explicar una
+  cantidad significativa de la variabilidad en los datos observados.
+\end{itemize}
+
+En resumen, los resultados sugieren que el modelo tiene un buen
+desempeño en la predicción de la variable objetivo y puede ser útil para
+comprender y predecir el comportamiento de la variable objetivo en
+función de las variables predictoras incluidas en el modelo.
+
+\hypertarget{variables-significativas}{%
+\subsubsection{Variables
+significativas}\label{variables-significativas}}
+
+En nuestro análisis, la variable Sales emerge como la más significativa,
+seguida, aunque no de manera inmediata, por MTenure (Antigüedad en el
+puesto del gerente), cuyo impacto resulta ser bastante tenue. Por otro
+lado, la variable Comp (competidores) muestra una relación inversa con
+las ganancias, indicando que una mayor competencia se correlaciona con
+menores ganancias. Sin embargo, estas observaciones, aunque reveladoras,
+no proporcionan una respuesta completa a nuestra pregunta inicial. Es
+posible que otras variables no consideradas en nuestro análisis puedan
+desempeñar un papel crucial en las ganancias de las tiendas.
+
+Para profundizar en esta investigación, proponemos varias vías de
+análisis adicionales:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Análisis de Interacción:} Explorar si la combinación de
+  variables, como antigüedad en el puesto del gerente y la habilidad de
+  gestión, tiene un efecto sinérgico en las ganancias. Este enfoque
+  podría revelar si las tiendas con un gerente con varios años de
+  servicio obtienen un mayor beneficio que aquellas con gerente sin.
+\item
+  \textbf{Análisis de Subgrupos:} Investigar cómo estas variables
+  afectan las ganancias en diferentes contextos, como ubicaciones
+  específicas o tiendas de diferentes tamaños. Esto podría proporcionar
+  información sobre si la importancia de la habilidad del gerente varía
+  según el entorno.
+\item
+  \textbf{Importancia Relativa:} Emplear técnicas estadísticas para
+  evaluar la importancia relativa de las variables en la predicción de
+  ganancias. Este análisis arrojaría luz sobre cuánto contribuye cada
+  factor al éxito financiero de las tiendas.
+\end{enumerate}
+
+Al profundizar de esta manera, podemos obtener una comprensión más
+completa de los factores que influyen en las ganancias de las tiendas y
+desarrollar estrategias más efectivas para optimizar el rendimiento
+financiero.
+
+\hypertarget{auxf1adir-un-tuxe9rmino-de-interacciuxf3n-al-dataframe}{%
+\subsubsection{Añadir un término de interacción al
+DataFrame}\label{auxf1adir-un-tuxe9rmino-de-interacciuxf3n-al-dataframe}}
+
+En el análisis de regresión lineal, la construcción de modelos precisos
+y representativos es esencial para comprender las relaciones entre las
+variables predictoras y la variable de respuesta. Una técnica poderosa
+para mejorar la capacidad predictiva de un modelo es la creación de
+variables de interacción.
+
+Las variables de interacción son productos entre dos o más variables
+predictoras y pueden capturar efectos conjuntos que no se pueden
+capturar considerando las variables por separado. Esta técnica es
+particularmente útil cuando se sospecha que las relaciones entre las
+variables predictoras y la variable de respuesta son no lineales o
+cuando ciertas variables tienen un efecto modificador en otras.
+
+Para nuestro estudio, nos centramos en el beneficio (Profit) de una
+empresa y cómo está influenciado por diversas variables, incluyendo la
+antigüedad en el puesto (MTenure y CTenure) y las habilidades del
+personal y los gerentes (CrewSkill y MgrSkill). Es crucial entender cómo
+la experiencia acumulada del personal y los gerentes interactúa con sus
+habilidades respectivas para influir en el rendimiento de la empresa.
+
+Por tanto, hemos creado dos nuevas variables de interacción:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Interacción entre CTenure y CrewSkill:} Esta variable captura
+  cómo la antigüedad en el puesto del personal interactúa con sus
+  habilidades. Es interesante observar cómo la experiencia acumulada del
+  personal se relaciona con sus habilidades para influir en el beneficio
+  de la empresa.
+\item
+  \textbf{Interacción entre MTenure y MgrSkill:} Esta variable refleja
+  cómo la antigüedad en el puesto de los gerentes interactúa con sus
+  habilidades. Observar cómo la experiencia acumulada de los gerentes se
+  relaciona con sus habilidades puede proporcionar información valiosa
+  sobre su impacto en el rendimiento financiero de la empresa.
+\end{enumerate}
+
+La inclusión de estas nuevas variables de interacción en nuestro modelo
+de regresión lineal nos permitirá examinar cómo la experiencia y las
+habilidades conjuntas del personal y los gerentes afectan al beneficio
+de la empresa. Su significancia estadística y su impacto en la
+predicción del beneficio nos ayudarán a obtener una comprensión más
+completa de los factores que influyen en el éxito financiero de la
+empresa.
+
+\begin{verbatim}
+## [1] 63 11
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 12 11
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 
+## |              Métrica               |   Valor   |
+## |:----------------------------------:|:---------:|
+## | RMSE (Error Cuadrático Medio Raíz) | 0.3179117 |
+## | R² (Coeficiente de Determinación)  | 0.9243495 |
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 
+## Table: Coeficientes del Modelo de Regresión
+## 
+## |                             |           Variable           | Coeficiente |
+## |:----------------------------|:----------------------------:|:-----------:|
+## |(Intercept)                  |         (Intercept)          | -0.0136145  |
+## |Sales                        |            Sales             |  0.7784563  |
+## |MTenure                      |           MTenure            | -0.6182811  |
+## |CTenure                      |           CTenure            |  0.0125040  |
+## |Pop                          |             Pop              |  0.0761084  |
+## |Comp                         |             Comp             | -0.1346759  |
+## |CrewSkill                    |          CrewSkill           | -0.0650698  |
+## |MgrSkill                     |           MgrSkill           |  0.0189681  |
+## |ServQual                     |           ServQual           |  0.0172254  |
+## |interaccion_MTenure_MgrSkill | interaccion_MTenure_MgrSkill |  0.7272289  |
+\end{verbatim}
+
+\includegraphics{Entregable_Jorge_aquino_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+Para este modelo, se ha incorporado una nueva variable que es el
+producto de MTenure (Antigüedad en el puesto del gerente) y MgrSkill
+(habilidad de gestión). Es notable observar que esta nueva variable
+resulta altamente significativa en nuestro análisis. Esto sugiere que la
+combinación de la antigüedad en el puesto del gerente y su habilidad de
+gestión puede desempeñar un papel crucial en el resultado de nuestras
+ganancias. Este hallazgo amplía nuestra comprensión de los factores que
+influyen en el rendimiento de las tiendas, y subraya la importancia de
+considerar interacciones entre variables en futuros análisis
+
+\hypertarget{cuxe1lculo-de-bonificaciuxf3n-para-un-gerente-que-presenta-los-sguientes-datos-en-su-tiienda}{%
+\subsubsection{Cálculo de bonificación para un gerente que presenta los
+sguientes datos en su
+tiienda}\label{cuxe1lculo-de-bonificaciuxf3n-para-un-gerente-que-presenta-los-sguientes-datos-en-su-tiienda}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0374}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0654}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1121}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1121}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1028}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1028}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0841}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0935}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1028}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0935}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0935}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+store
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Sales
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Profit
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+MTenure
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CTenure
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pop
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Comp
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CrewSkill
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+MgrSkill
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+ServQual
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & 9 & 2113089 & 474725 & 108.9935 & 6.061602 & 26519 & 2.63763 & 3.22
+& 3.583333 & 100 \\
+2 & 9 & 2747015.7 & 901977.5 & 130.7922 & 7.2739224 & 26519 & 2.63763 &
+3.22 & 3.583333 & 100 \\
+\end{longtable}
+
+\begin{verbatim}
+##        2 
+## 49349.73
+\end{verbatim}
+
+\hypertarget{resultado-de-la-aplicaciuxf3n-del-modelo}{%
+\subsubsection{Resultado de la aplicación del
+modelo:}\label{resultado-de-la-aplicaciuxf3n-del-modelo}}
+
+La estimación de las ganacias en la tienda 9 bajo estos nuevos
+parámetros es de 49.349,73 y el promedio de los meses de servicios del
+gerente aumentó en 6.6 meses en promedio, con este valor puede estimarse
+una bonificación al gerente.
+
+\end{document}

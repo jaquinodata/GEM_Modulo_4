@@ -1,0 +1,44 @@
+"0","# Crear un data frame con los datos proporcionados
+datos6 <- data.frame(
+  store = c(9, 9),
+  Sales = c(2113089, 2747015.7),
+  Profit = c(474725, 901977.5),
+  MTenure = c(108.9935, 130.7922),
+  CTenure = c(6.061602, 7.2739224),
+  Pop = c(26519, 26519),
+  Comp = c(2.63763, 2.63763),
+  CrewSkill = c(3.22, 3.22),
+  MgrSkill = c(3.583333, 3.583333),
+  ServQual = c(100, 100)
+)
+
+# Calcular la variable de interacción correctamente
+datos6$interaccion_MTenure_MgrSkill <- datos6$MTenure * datos6$MgrSkill
+
+# Aumentar en 0.5 años el valor de MTenure en el segundo conjunto de datos
+datos6$nueva_MTenure <- ifelse(datos6$store == 9, datos6$MTenure + 0.5, datos6$MTenure)
+
+# Aumentar la variable de interacción en consecuencia
+datos6$nueva_interaccion_MTenure_MgrSkill <- ifelse(datos6$store == 9, datos6$interaccion_MTenure_MgrSkill + 0.5 * datos6$MgrSkill, datos6$interaccion_MTenure_MgrSkill)
+
+# Realizar la predicción de las ganancias con el nuevo conjunto de datos
+prediccion_ganancias <- predict(modelo2, newdata = datos6)
+
+# Calcular el cambio en las ganancias para la tienda que aumentó sus años de servicio
+cambio_ganancias_gerente <- prediccion_ganancias[2] - prediccion_ganancias[1]
+
+# Definir la proporción de bonificación (por ejemplo, 10%)
+proporcion_bonificacion <- 0.10
+
+# Calcular la bonificación específica para el gerente de la tienda
+bonificacion_gerente <- cambio_ganancias_gerente * proporcion_bonificacion
+
+# Mostrar la bonificación específica para el gerente de la tienda
+print(bonificacion_gerente)
+"
+"1","       2 "
+"1","
+"
+"1","49352.76 "
+"1","
+"
